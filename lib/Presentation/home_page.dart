@@ -29,7 +29,8 @@ class HomePage extends StatelessWidget {
                 child: Text("Submit"),
               ),
               KeyboardView(
-                onKeyPress: (String e) => debugPrint(e),
+                onKeyPress: (String e) => debugPrint('CLICKED $e'
+                ),
                 onDeleteKeyPress: () => debugPrint("delete X clicked"),
               ),
             ],

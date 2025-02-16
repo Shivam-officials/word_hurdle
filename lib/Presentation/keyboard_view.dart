@@ -12,7 +12,7 @@ class KeyboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -69,7 +69,7 @@ class KeyboardView extends StatelessWidget {
   Widget keyButton(BuildContext context, String e, Function onKeyPress) {
     return Expanded(
       child: ElevatedButton(
-        style: TextButton.styleFrom(
+        style: ElevatedButton.styleFrom(
           padding: EdgeInsets.zero,
           backgroundColor: keyBackGroundColor(context, e),
         ),
