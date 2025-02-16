@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:word_hurdle/Provider/StateProvider.dart';
-import 'package:word_hurdle/model/wordle.dart';
 
 import 'helper_functions.dart';
 
@@ -10,11 +9,17 @@ class HurdleBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: context.read<StateProvider>().wordLength),
-        itemCount: context.read<StateProvider>().numberOfCellsInHurdleBoard,
-        itemBuilder: (context, index) => wordleCell(context, index));
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      SizedBox(
+        width: MediaQuery.of(context).size.width * 0.7,
+        child: GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: context.read<StateProvider>().wordLength),
+            itemCount: context.read<StateProvider>().numberOfCellsInHurdleBoard,
+            itemBuilder: (context, index) => wordleCell(context, index)),
+      ),
+    ]);
   }
 
   Widget wordleCell(BuildContext context, int currentHurdleBoardElementIndex) {
@@ -23,11 +28,13 @@ class HurdleBoard extends StatelessWidget {
           stateProvider.hurdleBoardElement[currentHurdleBoardElementIndex],
       builder: (BuildContext context, currentWord, child) => Container(
         decoration: BoxDecoration(
-            color: decideColor(currentWord),
-            shape: BoxShape.rectangle,
-            border: Border.all(
-              width: 2.5,
-            )),
+          color: decideColor(currentWord, Colors.white),
+          // shape: BoxShape.circle,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            width: 2.5
+          )
+        ),
         child: Center(
           child: Text(
             currentWord.letter,
@@ -37,6 +44,4 @@ class HurdleBoard extends StatelessWidget {
       ),
     );
   }
-
-
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'hurdle_board.dart';
+import 'keyboard_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,22 +14,29 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Column(
+        // mainAxisSize: MainAxisSize.min,
+
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
-          Expanded(child: HurdleBoard()),
+          HurdleBoard(),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.brown),
+                child: Text("Submit"),
+              ),
+              KeyboardView(
+                onKeyPress: (String e) => debugPrint(e),
+                onDeleteKeyPress: () => debugPrint("delete X clicked"),
+              ),
+            ],
+          )
         ],
       ),
     );
-  }
-
-  Widget hurdleBoard({required int width, required int height}) {
-    return Container(
-
-    );
-  }
-
-  Widget customKeyboard() {
-    return Placeholder();
   }
 
   Widget buttonRow() {
