@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:word_hurdle/Provider/StateProvider.dart';
 
+import 'helper_functions.dart';
 import 'hurdle_board.dart';
 import 'keyboard_view.dart';
 
@@ -24,17 +27,17 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => context.read<StateProvider>().onSubmit(),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.brown),
                 child: Text("Submit"),
               ),
               KeyboardView(
-                onKeyPress: (String e) => debugPrint('CLICKED $e'
-                ),
-                onDeleteKeyPress: () => debugPrint("delete X clicked"),
+                onKeyPress: (String e) =>
+                    context.read<StateProvider>().alphabetInputting(e),
+                onDeleteKeyPress: () => context.read<StateProvider>().onDeletePress(),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -48,5 +51,9 @@ class HomePage extends StatelessWidget {
         ElevatedButton(onPressed: () {}, child: Text("Submit")),
       ],
     );
+  }
+
+  Widget showDialogMsg() {
+    return Text('');
   }
 }

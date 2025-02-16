@@ -10,57 +10,59 @@ class KeyboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              children: context
-                  .read<StateProvider>()
-                  .keys[0]
-                  .map((
-                    e,
-                  ) =>
-                      keyButton(context, e, onKeyPress))
-                  .toList(),
-            ),
-            Row(
-              children: context
-                  .read<StateProvider>()
-                  .keys[1]
-                  .map((e) => keyButton(context, e, onKeyPress))
-                  .toList(),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 9,
-                  child: Row(
-                    children: context
-                        .read<StateProvider>()
-                        .keys[2]
-                        .map((e) => keyButton(context, e, onKeyPress))
-                        .toList(),
+    return Consumer(
+      builder: (BuildContext context, StateProvider provider, Widget? child) => Card(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: context
+                    .read<StateProvider>()
+                    .keys[0]
+                    .map((
+                      e,
+                    ) =>
+                        keyButton(context, e, onKeyPress))
+                    .toList(),
+              ),
+              Row(
+                children: context
+                    .read<StateProvider>()
+                    .keys[1]
+                    .map((e) => keyButton(context, e, onKeyPress))
+                    .toList(),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 9,
+                    child: Row(
+                      children: context
+                          .read<StateProvider>()
+                          .keys[2]
+                          .map((e) => keyButton(context, e, onKeyPress))
+                          .toList(),
+                    ),
                   ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: ElevatedButton(
-                      onPressed: onDeleteKeyPress,
-                      style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          backgroundColor: Colors.red,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5))),
-                      child: Text(
-                        " X ",
-                      )),
-                ),
-              ],
-            ),
-          ],
+                  Expanded(
+                    flex: 1,
+                    child: ElevatedButton(
+                        onPressed: onDeleteKeyPress,
+                        style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            backgroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5))),
+                        child: Text(
+                          " X ",
+                        )),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
