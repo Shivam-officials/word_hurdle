@@ -27,14 +27,15 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton(
-                onPressed: () => context.read<StateProvider>().onSubmit(),
+                onPressed: () => checksAfterSubmit(context),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.brown),
                 child: Text("Submit"),
               ),
               KeyboardView(
                 onKeyPress: (String e) =>
                     context.read<StateProvider>().alphabetInputting(e),
-                onDeleteKeyPress: () => context.read<StateProvider>().onDeletePress(),
+                onDeleteKeyPress: () =>
+                    context.read<StateProvider>().onDeletePress(),
               ),
             ],
           ),
@@ -55,5 +56,34 @@ class HomePage extends StatelessWidget {
 
   Widget showDialogMsg() {
     return Text('');
+  }
+
+  void checksAfterSubmit(BuildContext context) {
+    context.read<StateProvider>().onSubmit();
+    if (context.read<StateProvider>().isCorrectAns) {
+      showDialogWithMsg(
+        title: 'U Won',
+        context: context,
+        body: "Well Done .. Sher hai tu SHER",
+        onQuit: () {
+          Navigator.pop(context);
+        },
+        onPlayAgain: () {
+          context.read<StateProvider>().resetGameStates();
+          Navigator.pop(context);
+        },
+      );
+    } else if (context.read<StateProvider>().ongoingNumberOfAttempt >
+        context.read<StateProvider>().maxNoOfAttempts) {
+      showDialogWithMsg(
+        title: '😂😂LOSERRR..',
+        context: context,
+        body: "The right word was ${context.read<StateProvider>().targetWord}",
+        onQuit: () {
+          Navigator.pop(context);
+        },
+        onPlayAgain: () => context.read<StateProvider>().resetGameStates(),
+      );
+    }
   }
 }

@@ -30,7 +30,7 @@ class StateProvider extends ChangeNotifier {
       'O',
       'P',
     ],
-    ['A', 'S', 'D', 'F', 'G', 'H', 'I', 'J', 'k', 'L'],
+    ['A', 'S', 'D', 'F', 'G', 'H', 'I', 'J', 'K', 'L'],
     ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
   ];
   List<String> excludedWords = [];
@@ -83,7 +83,8 @@ class StateProvider extends ChangeNotifier {
 
   void onSubmit() {
     List<String> targetWordList = targetWord.split('');
-    debugPrint(targetWordList.toString());
+    debugPrint(' target word is ${targetWordList.toString()}');
+    debugPrint(' row input word is ${rowInput.toString()}');
     int itr = index;
     for (int i = 0; i < _wordLength; i++) {
       if (targetWordList[i] == rowInput[i]) {

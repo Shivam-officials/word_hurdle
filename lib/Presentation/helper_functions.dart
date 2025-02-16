@@ -14,13 +14,19 @@ decideColor(Wordle hurdleBoardElement,Color defaultColor) {
   return defaultColor;
 }
 
-Widget showDialogWithMsg({required BuildContext context,required String title, required String body, required VoidCallback onQuit, required VoidCallback onPlayAgain}){
-  return AlertDialog(
+void showDialogWithMsg({required BuildContext context,required String title, required String body, required VoidCallback onQuit, required VoidCallback onPlayAgain}){
+  showDialog(context: context, builder: (context) => AlertDialog(
     title: Text(title),
     content: Text(body),
     actions: [
-      TextButton(onPressed: onQuit, child: Text("Quit")),
-      TextButton(onPressed: onPlayAgain, child: Text("Play Again"))
+      TextButton(
+        onPressed: onQuit,
+        child: const Text('QUIT'),
+      ),
+      TextButton(
+        onPressed: onPlayAgain,
+        child: const Text('PLAY AGAIN'),
+      ),
     ],
-  );
+  ));
 }
