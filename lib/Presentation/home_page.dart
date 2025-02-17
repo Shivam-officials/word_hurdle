@@ -60,7 +60,9 @@ class HomePage extends StatelessWidget {
 
   void checksAfterSubmit(BuildContext context) {
     context.read<StateProvider>().onSubmit();
-    if (context.read<StateProvider>().isCorrectAns) {
+    if (context
+        .read<StateProvider>()
+        .isCorrectAns) {
       showDialogWithMsg(
         title: 'U Won',
         context: context,
@@ -73,16 +75,25 @@ class HomePage extends StatelessWidget {
           Navigator.pop(context);
         },
       );
-    } else if (context.read<StateProvider>().ongoingNumberOfAttempt >
-        context.read<StateProvider>().maxNoOfAttempts) {
+    } else if (context
+        .read<StateProvider>()
+        .ongoingNumberOfAttempt >
+        context
+            .read<StateProvider>()
+            .maxNoOfAttempts) {
       showDialogWithMsg(
         title: '😂😂LOSERRR..',
         context: context,
-        body: "The right word was ${context.read<StateProvider>().targetWord}",
+        body: "The right word was ${context
+            .read<StateProvider>()
+            .targetWord}",
         onQuit: () {
           Navigator.pop(context);
         },
-        onPlayAgain: () => context.read<StateProvider>().resetGameStates(),
+        onPlayAgain: () {
+          context.read<StateProvider>().resetGameStates();
+          Navigator.pop(context);
+        },
       );
     }
   }

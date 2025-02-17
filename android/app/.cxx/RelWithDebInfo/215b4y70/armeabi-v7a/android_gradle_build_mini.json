@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "C:\\My Drive\\Developer\\Flutter\\Flutter SDK\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\groovy\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\shivam\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\My Drive\\Developer\\Flutter\\Flutter project\\word_hurdle\\android\\app\\.cxx\\RelWithDebInfo\\215b4y70\\armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\shivam\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\My Drive\\Developer\\Flutter\\Flutter project\\word_hurdle\\android\\app\\.cxx\\RelWithDebInfo\\215b4y70\\armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
